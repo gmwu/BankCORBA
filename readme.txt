@@ -1,6 +1,12 @@
 Needs to be in the working directory of the app.
 
-1. Starta namn server i bank exemplet med följande kommandon. Läs eventuell meddelande om Port ändringar som systemet ger! Om den inte startar, försök att starta som sudo: 
+BANK EXEMPLET
+=============
+1. Mappa java och IDL: 
+idlj -fall -oldImplBase CalcInterface.idl
+
+2. Starta namn server i bank exemplet med följande kommandon. Läs eventuell meddelande om Port ändringar som systemet ger! 
+Om den inte startar, försök att starta som sudo: 
 tnameserv -ORBInitialPort 1050
 
 //Om den är uppe ska det stå: 
@@ -21,15 +27,26 @@ java bankidl.Client BankOfEstonia -ORBInitialPort 900
 
 4. Skriv kommandon:
 help
-
-//Tillgänglig kommandon visar
-
+//Tillgänglig kommandon visas
 
 
+CALC EXEMPLET
+=============
+1. Mappa IDL och java interface med -oldImplBase som binder POA: 
+idlj -fall CalcInterface.idl
+idlj -fall -oldImplBase CalcInterface.idl
 
-To start the ordb: 
-orbd -ORBInitialPort 1050 -ORBInitialHost localhost&
+2. Skapa Server.java och Client.java fil.
 
-To run the app: 
-java CalcyServer -ORBInitialPort 1050 -ORBInitialHost localhost&
-java CalcyClient -ORBInitialPort 1050 -ORBInitialHost localhost&
+3. Kompilera filerna, CalcServer.java och CalcClient.java utanför CalcApp mappen. CalcApp är modul som genereras från IDLJ:
+javac CalcServer.java CalcApp/*.java
+javac CalcClient.java CalcApp/*.java
+
+4. Starta namn server: 
+tnameserv -ORBInitialPort 1050
+
+5. Starta CalcServer: 
+java CalcServer -ORBInitialPort 1050
+
+6. Starta CalcClient: 
+java CalcClient -ORBInitialPort 1050
