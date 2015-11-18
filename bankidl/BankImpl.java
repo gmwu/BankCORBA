@@ -24,6 +24,7 @@ public class BankImpl extends _BankImplBase {
         bankname = name;
     }
     
+    //new account
     public Account newAccount(String name) throws rejected {        
         AccountImpl account = (AccountImpl) accounts.get(name);
         if (account != null) {
@@ -44,10 +45,12 @@ public class BankImpl extends _BankImplBase {
         return (Account)account;
     }
     
+    //get account
     public Account getAccount(java.lang.String name) {
         return (Account) accounts.get(name);
     }
     
+    //delete account
     public boolean deleteAccount(String name) {        
         AccountImpl account = (AccountImpl) accounts.get(name);
         if (account == null) return false;
